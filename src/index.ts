@@ -1,6 +1,6 @@
 import { FastMCP } from "fastmcp";
 import { z } from "zod";
-import { execSync } from "child_process";
+import { execSync } from "node:child_process";
 
 const mcp = new FastMCP({
   name: "microsoft-planner-mcp",
