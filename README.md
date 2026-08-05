@@ -8,7 +8,8 @@ A minimal MCP server that enables Claude Code to interact with Microsoft Planner
 
 ## Prerequisites
 
-- **Node.js** (v18 or later)
+- **Bun** (v1.2 or later) — see [bun.sh](https://bun.sh)
+- **Node.js** (v20 or later) — optional, only if you want to run the compiled server with Node
 - **Azure CLI** installed and authenticated:
   ```bash
   az login
@@ -19,8 +20,8 @@ A minimal MCP server that enables Claude Code to interact with Microsoft Planner
 ```bash
 git clone https://github.com/vyente-ruffin/microsoft-planner-mcp.git
 cd microsoft-planner-mcp
-npm install
-npm run build
+bun install
+bun run build
 ```
 
 ## Usage with Claude Code
@@ -28,8 +29,12 @@ npm run build
 Add the MCP server to Claude Code:
 
 ```bash
-claude mcp add microsoft-planner-mcp node /path/to/microsoft-planner-mcp/dist/index.js
+claude mcp add microsoft-planner-mcp bun /path/to/microsoft-planner-mcp/src/index.ts
 ```
+
+Bun runs the TypeScript source directly, so no build step is required. If you prefer
+running the compiled output with Node, use `node /path/to/microsoft-planner-mcp/dist/index.js`
+after `bun run build`.
 
 Or add directly to your MCP settings file:
 
@@ -37,12 +42,22 @@ Or add directly to your MCP settings file:
 {
   "mcpServers": {
     "microsoft-planner-mcp": {
-      "command": "node",
-      "args": ["/path/to/microsoft-planner-mcp/dist/index.js"]
+      "command": "bun",
+      "args": ["/path/to/microsoft-planner-mcp/src/index.ts"]
     }
   }
 }
 ```
+
+## Scripts
+
+| Script | Description |
+|--------|-------------|
+| `bun install` | Install dependencies |
+| `bun run build` | Compile TypeScript to `dist/` |
+| `bun run dev` | Run the server straight from TypeScript source |
+| `bun run start` | Run the compiled server with Node |
+| `bun run typecheck` | Type-check without emitting |
 
 ## Available Tools
 

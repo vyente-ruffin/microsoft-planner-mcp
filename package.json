@@ -5,18 +5,25 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js"
+    "dev": "bun run src/index.ts",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "packageManager": "bun@1.3.14",
+  "engines": {
+    "bun": ">=1.2.0",
+    "node": ">=20"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "fastmcp": "^3.25.3",
-    "zod": "^4.1.13"
+    "fastmcp": "^4.12.4",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@types/node": "^24.10.1",
-    "typescript": "^5.9.3"
+    "@types/node": "^26.1.2",
+    "typescript": "^7.0.2"
   }
 }
